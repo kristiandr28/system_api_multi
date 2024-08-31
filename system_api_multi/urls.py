@@ -35,6 +35,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('api1/', include('dj_rest_auth.urls')),
     path('admin/', admin.site.urls),
     path('', include('inventory.urls')),
     path('', include('user_management.urls')),
