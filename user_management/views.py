@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from dj_rest_auth.views import LoginView
 from rest_framework import viewsets
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UserSerializer, UserProfileSerializer
+from .serializers import UserSerializer, UserProfileSerializer, CustomLoginSerializer
 
 User = get_user_model()
 
@@ -21,3 +22,7 @@ class UserProfileViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class CustomLoginView(LoginView):
+    serializer_class = CustomLoginSerializer
+    
